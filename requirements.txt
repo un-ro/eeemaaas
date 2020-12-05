@@ -28,7 +28,7 @@ packaging==20.3
 pacman-mirrors==4.16.4
 pep517==0.8.2
 pexpect==4.8.0
-Pillow==6.2.1
+Pillow==7.1.0
 progress==1.5
 psutil==5.7.0
 ptyprocess==0.6.0
