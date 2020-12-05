@@ -1,7 +1,7 @@
 import json
-import os
 from datetime import datetime
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 
 def packaging(price):
@@ -31,17 +31,21 @@ def packaging(price):
     data_json = json.loads(str(data).replace("\'", "\""))
     json_formatted_str = json.dumps(data_json, indent=4)
 
-    print(json_formatted_str)
+    f = open("data.json", "w")
+    f.write(json_formatted_str)
+    f.close()
 
 
 def updater():
     # Selenium WebDriver
-    webdriver.ChromeOptions.add_argument("--headless")
-    webdriver.ChromeOptions.add_argument("--disable-dev-shm-usage")
-    webdriver.ChromeOptions.add_argument("--no-sandbox")
-    webdriver.ChromeOptions.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
-    browser = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"))
+    options = Options()
+    user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36'
+    options.add_argument('user-agent={0}'.format(user_agent))
+    options.headless = True
+    browser = webdriver.Chrome(options=options)
     browser.get('https://www.tokopedia.com/emas/harga-hari-ini/')
+    browser.implicitly_wait(10)
+
 
     # Scrape price using XPATH
     prices = browser.find_elements_by_xpath('//*[@class="main-price"]')
