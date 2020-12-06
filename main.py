@@ -42,7 +42,7 @@ def updater():
     user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36'
     options.add_argument('user-agent={0}'.format(user_agent))
     options.headless = True
-    browser = webdriver.Chrome(options=options)
+    browser = webdriver.Chrome('./chromedriver',options=options)
     browser.get('https://www.tokopedia.com/emas/harga-hari-ini/')
     browser.implicitly_wait(10)
 
