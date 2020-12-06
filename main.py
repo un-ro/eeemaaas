@@ -31,12 +31,9 @@ def packaging(price):
     data_json = json.loads(str(data).replace("\'", "\""))
     json_formatted_str = json.dumps(data_json, indent=4)
 
-    f = open("data.json", "w")
-    f.write(json_formatted_str)
-    f.close()
-
-    # Setelah save file, return json string
-    return json_formatted_str
+    with open('data.json', "w") as fh:
+        fh.write(json_formatted_str)
+        fh.close()
 
 
 def updater():
