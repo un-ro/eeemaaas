@@ -16,6 +16,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        persist-credentials: false
+        fetch-depth: 0
     - name: Set up Python 3.8
       uses: actions/setup-python@v2
       with:
@@ -42,7 +45,7 @@ jobs:
       run: |
         git config --local user.email "${{ secrets.EMAIL }}"
         git config --local user.name "${{ secrets.USERNAME }}"
-        git add -A
+        git add data.json
         arr[0]="🎈 Update"
         arr[1]="👮‍♂️ Update"
         arr[2]="🚛 Update"
@@ -54,3 +57,4 @@ jobs:
         force: true
         directory: "."
         github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: main
