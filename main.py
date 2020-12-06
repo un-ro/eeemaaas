@@ -55,6 +55,7 @@ def updater():
         data = value.text
         data = data[2:]
         data = data.replace(".", "")
+        print(data)
         price.append(data)
     
     # Close the browser
