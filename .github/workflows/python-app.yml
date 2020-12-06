@@ -37,7 +37,7 @@ jobs:
         ./setup.sh
     - name: Scrape
       run: |
-        python main.py >> data.json
+        python main.py > data.json
     - name: Commit changes
       run: |
         git config --local user.email "${{ secrets.EMAIL }}"
