@@ -34,7 +34,7 @@ jobs:
     - name: Install Google Chrome
       run: |
         chmod +x ./setup.sh
-        ./scripts/InstallChrome.sh
+        ./setup.sh
     - name: Scrape
       run: |
         python main.py >> data.json
