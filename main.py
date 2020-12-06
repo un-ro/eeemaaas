@@ -35,32 +35,33 @@ def packaging(price):
     f.write(json_formatted_str)
     f.close()
 
+    # Setelah save file, return json string
+    return json_formatted_str
+
 
 def updater():
     # Selenium WebDriver
     options = Options()
-    options.binary_location = GOOGLE_CHROME_PATH
     user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36'
     options.add_argument('user-agent={0}'.format(user_agent))
     options.headless = True
-    browser = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH,options=options)
+    browser = webdriver.Chrome(options=options)
     browser.get('https://www.tokopedia.com/emas/harga-hari-ini/')
     browser.implicitly_wait(10)
-
 
     # Scrape price using XPATH
     prices = browser.find_elements_by_xpath('//*[@class="main-price"]')
 
-    price = []
-
     # Cleaning data
+    price = []
     for value in prices:
         data = value.text
         data = data[2:]
         data = data.replace(".", "")
         price.append(data)
-
-    browser.close()  # Close the browser
+    
+    # Close the browser
+    browser.close()  
     browser.quit()
     return price
 
