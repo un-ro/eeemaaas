@@ -1,2 +1,1 @@
-worker: pip install requirements.txt
-worker: python main.py
+worker: pip install requirements.txt && python main.py
